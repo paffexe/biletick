@@ -6,8 +6,8 @@ import { Title } from "../../../shared/ui/title/Title";
 
 export const MovieDetail = memo(() => {
   const { id } = useParams();
-  const { getMovieInfo } = useMovie();
-  const { data } = getMovieInfo(id as string, "similar");
+  const { useMovieInfoQuery } = useMovie();
+  const { data } = useMovieInfoQuery(id as string, "similar");
 
   return (
     <div>

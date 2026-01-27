@@ -10,9 +10,9 @@ interface Props {
 
 export const MovieInfo: FC<Props> = memo((props) => {
   const { id } = props;
-  const { getMovieById, getMovieInfo } = useMovie();
-  const { data } = getMovieById(id);
-  const { data: imageData } = getMovieInfo(id, "images");
+  const { useMovieByIdQuery, useMovieInfoQuery } = useMovie();
+  const { data } = useMovieByIdQuery(id);
+  const { data: imageData } = useMovieInfoQuery(id, "images");
 
   return (
     <div className="w-full">
