@@ -12,8 +12,8 @@ import { useMovie, type IMovie } from "@/entities/movie";
 import { createImageUrl } from "@/shared/utils";
 
 export const Hero = memo(() => {
-  const { getMovies } = useMovie();
-  const { data } = getMovies();
+  const { useMoviesQuery } = useMovie();
+  const { data } = useMoviesQuery();
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
 
   const imageBase = "https://image.tmdb.org/t/p/w500";

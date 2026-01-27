@@ -8,14 +8,14 @@ const { RangePicker } = DatePicker;
 
 export const MovieSort = memo(() => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { getMovieGenre } = useMovie();
+  const { useMovieGenreQuery } = useMovie(); // Updated hook name
 
   const sort_by = searchParams.get("sort") ?? "popularity.desc";
   const with_genres = searchParams.get("genres") ?? "16";
   const fromDate = searchParams.get("from") ?? "";
   const toDate = searchParams.get("to") ?? "";
 
-  const { data: genreData } = getMovieGenre();
+  const { data: genreData } = useMovieGenreQuery(); // Call the hook at top level
 
   const sortOptions = [
     { value: "popularity.desc", label: "Most popular" },

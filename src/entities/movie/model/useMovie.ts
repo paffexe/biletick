@@ -8,7 +8,7 @@ import {
 import type { IMovieParams } from "./types";
 
 export const useMovie = () => {
-  const getMovies = (params?: IMovieParams) =>
+  const useMoviesQuery = (params?: IMovieParams) =>
     useQuery<any, any>({
       queryKey: ["movieKey", params],
       queryFn: () => fetchMovies(params),
@@ -18,23 +18,23 @@ export const useMovie = () => {
       staleTime: 1000 * 60,
     });
 
-  const getMovieById = (id: string) =>
+  const useMovieByIdQuery = (id: string) =>
     useQuery({
       queryKey: ["movieKey", id],
       queryFn: () => fetchMovieById(id),
     });
 
-  const getMovieInfo = (id: string, path: string) =>
+  const useMovieInfoQuery = (id: string, path: string) =>
     useQuery({
       queryKey: ["movieKey", id, path],
       queryFn: () => fetchMovieInfo(id, path),
     });
 
-  const getMovieGenre = () =>
+  const useMovieGenreQuery = () =>
     useQuery({
       queryKey: ["genreKey"],
       queryFn: () => fetchMovieGenre(),
     });
 
-  return { getMovies, getMovieById, getMovieInfo, getMovieGenre };
+  return { useMoviesQuery, useMovieByIdQuery, useMovieInfoQuery, useMovieGenreQuery };
 };
