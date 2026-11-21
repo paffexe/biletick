@@ -1,7 +1,14 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import {
+  keepPreviousData,
+  useInfiniteQuery,
+  useQuery,
+  type InfiniteData,
+} from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import type { Paginated } from "@/shared/api";
+import { MAX_TMDB_PAGES } from "@/shared/config";
 import { movieApi } from "../api/movieApi";
-import type { DiscoverParams, Genre, MovieCategory } from "./types";
+import type { DiscoverParams, Genre, Movie, MovieCategory } from "./types";
 
 export const useDiscoverMovies = (params: DiscoverParams) =>
   useQuery({
@@ -10,10 +17,23 @@ export const useDiscoverMovies = (params: DiscoverParams) =>
     placeholderData: keepPreviousData,
   });
 
-export const useMovieList = (category: MovieCategory) =>
-  useQuery({
-    queryKey: ["movies", "list", category],
-    queryFn: () => movieApi.list(category),
+const nextPage = (last: Paginated<Movie>) =>
+  last.page < Math.min(last.total_pages, MAX_TMDB_PAGES) ? last.page + 1 : undefined;
+
+const flattenUnique = (data: InfiniteData<Paginated<Movie>>) => {
+  const seen = new Set<number>();
+  return data.pages
+    .flatMap((p) => p.results)
+    .filter((m) => !seen.has(m.id) && Boolean(seen.add(m.id)));
+};
+
+export const useInfiniteMovieList = (category: MovieCategory) =>
+  useInfiniteQuery({
+    queryKey: ["movies", "list", category, "infinite"],
+    queryFn: ({ pageParam }) => movieApi.list(category, pageParam),
+    initialPageParam: 1,
+    getNextPageParam: nextPage,
+    select: flattenUnique,
   });
 
 export const useTrendingMovies = () =>
@@ -34,9 +54,12 @@ export const useMovieImages = (id: string) =>
   useQuery({ queryKey: ["movie", id, "images"], queryFn: () => movieApi.images(id) });
 
 export const useMovieRecommendations = (id: string) =>
-  useQuery({
+  useInfiniteQuery({
     queryKey: ["movie", id, "recommendations"],
-    queryFn: () => movieApi.recommendations(id),
+    queryFn: ({ pageParam }) => movieApi.recommendations(id, pageParam),
+    initialPageParam: 1,
+    getNextPageParam: nextPage,
+    select: flattenUnique,
   });
 
 export const useGenres = () =>

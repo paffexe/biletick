@@ -1,36 +1,44 @@
 import { memo, type ReactNode } from "react";
 import { MovieCard, MovieCardSkeleton, type Movie } from "@/entities/movie";
 import { BookmarkButton } from "@/features/bookmark";
-import { Reveal, SectionHeading } from "@/shared/ui";
+import { Carousel } from "@/shared/ui";
+
+export interface MovieRailSource {
+  data?: Movie[];
+  isLoading: boolean;
+  hasNextPage?: boolean;
+  isFetchingNextPage?: boolean;
+  fetchNextPage?: () => unknown;
+}
 
 interface Props {
   title: ReactNode;
   action?: ReactNode;
-  movies?: Movie[];
-  loading?: boolean;
+  source: MovieRailSource;
 }
 
-const itemClass = "w-[42%] shrink-0 snap-start pt-1 sm:w-[30%] md:w-[23%] lg:w-[18.4%]";
-
-export const MovieRail = memo(({ title, action, movies, loading }: Props) => {
-  if (!loading && !movies?.length) return null;
+export const MovieRail = memo(({ title, action, source }: Props) => {
+  const movies = source.data ?? [];
 
   return (
-    <Reveal>
-      <SectionHeading title={title} action={action} />
-      <ul className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-3 no-scrollbar sm:-mx-6 sm:scroll-px-6 sm:gap-6 sm:px-6 lg:mx-0 lg:scroll-px-0 lg:px-0">
-        {loading && !movies
-          ? Array.from({ length: 6 }, (_, i) => (
-              <li key={i} className={itemClass}>
-                <MovieCardSkeleton />
-              </li>
-            ))
-          : movies?.map((movie, i) => (
-              <li key={movie.id} className={itemClass}>
-                <MovieCard movie={movie} index={i} action={<BookmarkButton movie={movie} />} />
-              </li>
-            ))}
-      </ul>
-    </Reveal>
+    <Carousel
+      title={title}
+      action={action}
+      total={movies.length}
+      loading={source.isLoading}
+      hasMore={source.hasNextPage}
+      loadingMore={source.isFetchingNextPage}
+      onLoadMore={source.fetchNextPage}
+      itemClassName="w-[42%] shrink-0 snap-start sm:w-[30%] md:w-[23%] lg:w-[18.4%]"
+      skeleton={<MovieCardSkeleton />}
+      getKey={(i) => movies[i].id}
+      renderItem={(i, stagger) => (
+        <MovieCard
+          movie={movies[i]}
+          index={stagger}
+          action={<BookmarkButton movie={movies[i]} />}
+        />
+      )}
+    />
   );
 });

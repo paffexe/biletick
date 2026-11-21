@@ -17,6 +17,8 @@
     "readMore": "Read more",
     "showLess": "Show less",
     "showAll": "Show all {{count}}",
+    "previous": "Previous",
+    "next": "Next",
     "cancel": "Cancel"
   },
   "hero": {

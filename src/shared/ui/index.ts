@@ -9,3 +9,4 @@ export * from "./Reveal";
 export * from "./SplitText";
 export * from "./buttonClass";
 export * from "./PageTitle";
+export * from "./Carousel";

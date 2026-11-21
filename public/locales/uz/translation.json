@@ -17,6 +17,8 @@
     "readMore": "Batafsil",
     "showLess": "Yig‘ish",
     "showAll": "Barchasini ko‘rsatish ({{count}})",
+    "previous": "Oldingi",
+    "next": "Keyingi",
     "cancel": "Bekor qilish"
   },
   "hero": {

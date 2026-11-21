@@ -1,1 +1,1 @@
-export { MovieRail } from "./ui/MovieRail";
+export { MovieRail, type MovieRailSource } from "./ui/MovieRail";

@@ -29,8 +29,10 @@ export const movieApi = {
       .get<MovieImages>(`movie/${id}/images`, { params: { language: undefined } })
       .then((r) => r.data),
 
-  recommendations: (id: string) =>
-    api.get<Paginated<Movie>>(`movie/${id}/recommendations`).then((r) => r.data),
+  recommendations: (id: string, page = 1) =>
+    api
+      .get<Paginated<Movie>>(`movie/${id}/recommendations`, { params: { page } })
+      .then((r) => r.data),
 
   genres: () => api.get<{ genres: Genre[] }>("genre/movie/list").then((r) => r.data.genres),
 };

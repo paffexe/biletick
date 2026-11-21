@@ -68,11 +68,7 @@ export const MovieDetailPage = () => {
           </div>
         </Reveal>
 
-        <MovieRail
-          title={t("movie.similar")}
-          movies={recommendations.data?.results.slice(0, 15)}
-          loading={recommendations.isLoading}
-        />
+        <MovieRail key={id} title={t("movie.similar")} source={recommendations} />
       </div>
     </>
   );

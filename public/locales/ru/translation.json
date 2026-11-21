@@ -17,6 +17,8 @@
     "readMore": "Читать дальше",
     "showLess": "Свернуть",
     "showAll": "Показать всех ({{count}})",
+    "previous": "Назад",
+    "next": "Далее",
     "cancel": "Отмена"
   },
   "hero": {
