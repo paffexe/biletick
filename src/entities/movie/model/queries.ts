@@ -1,6 +1,7 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { movieApi } from "../api/movieApi";
-import type { DiscoverParams, MovieCategory } from "./types";
+import type { DiscoverParams, Genre, MovieCategory } from "./types";
 
 export const useDiscoverMovies = (params: DiscoverParams) =>
   useQuery({
@@ -41,11 +42,18 @@ export const useMovieRecommendations = (id: string) =>
 export const useGenres = () =>
   useQuery({ queryKey: ["genres"], queryFn: movieApi.genres, staleTime: Infinity });
 
+export const useGenreLabel = () => {
+  const { t } = useTranslation();
+  return (genre: Genre) => t(`genres.${genre.id}`, { defaultValue: genre.name });
+};
+
 export const useGenreNames = (ids: number[] = [], limit = 2) => {
   const { data } = useGenres();
+  const label = useGenreLabel();
   if (!data) return [];
   return ids
-    .map((id) => data.find((g) => g.id === id)?.name)
-    .filter((name): name is string => Boolean(name))
-    .slice(0, limit);
+    .map((id) => data.find((g) => g.id === id))
+    .filter((g): g is Genre => Boolean(g))
+    .slice(0, limit)
+    .map(label);
 };

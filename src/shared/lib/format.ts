@@ -1,10 +1,27 @@
 export const getYear = (date?: string | null) => (date ? date.slice(0, 4) : "");
 
+const UZ_MONTHS = [
+  "yanvar",
+  "fevral",
+  "mart",
+  "aprel",
+  "may",
+  "iyun",
+  "iyul",
+  "avgust",
+  "sentabr",
+  "oktabr",
+  "noyabr",
+  "dekabr",
+];
+
 export const formatDate = (date: string | null | undefined, locale: string) => {
   if (!date) return "";
-  return new Intl.DateTimeFormat(locale, { day: "numeric", month: "long", year: "numeric" }).format(
-    new Date(date),
-  );
+  const d = new Date(date);
+  if (locale.startsWith("uz")) {
+    return `${d.getFullYear()}-yil ${d.getDate()}-${UZ_MONTHS[d.getMonth()]}`;
+  }
+  return new Intl.DateTimeFormat(locale, { day: "numeric", month: "long", year: "numeric" }).format(d);
 };
 
 export const formatMoney = (value: number | null | undefined, locale: string) => {

@@ -5,4 +5,7 @@ export * from "./EmptyState";
 export * from "./PageLoader";
 export * from "./ButtonLink";
 export * from "./Logo";
+export * from "./Reveal";
+export * from "./SplitText";
 export * from "./buttonClass";
+export * from "./PageTitle";

@@ -4,7 +4,7 @@ import { PageLoader } from "@/shared/ui";
 import { Footer } from "@/widgets/footer";
 import { Header } from "@/widgets/header";
 
-const useScrollToTop = () => {
+const useSection = () => {
   const { pathname } = useLocation();
   const section = pathname.split("/").slice(0, 3).join("/");
   const previous = useRef(section);
@@ -13,15 +13,17 @@ const useScrollToTop = () => {
     if (previous.current !== section) window.scrollTo({ top: 0 });
     previous.current = section;
   }, [section]);
+
+  return section;
 };
 
 export const MainLayout = () => {
-  useScrollToTop();
+  const section = useSection();
 
   return (
     <div className="flex min-h-svh flex-col">
       <Header />
-      <main className="flex-1">
+      <main key={section} className="page-in flex-1">
         <Suspense fallback={<PageLoader />}>
           <Outlet />
         </Suspense>

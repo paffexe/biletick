@@ -9,6 +9,7 @@ export const ThemeToggle = memo(() => {
   const dispatch = useDispatch();
   const mode = useSelector(selectThemeMode);
   const label = mode === "dark" ? t("header.toLight") : t("header.toDark");
+  const Icon = mode === "dark" ? Sun : Moon;
 
   return (
     <button
@@ -16,9 +17,12 @@ export const ThemeToggle = memo(() => {
       onClick={() => dispatch(toggleTheme())}
       aria-label={label}
       title={label}
-      className="grid size-10 place-items-center rounded-full text-ink/80 transition-colors hover:bg-raised hover:text-ink"
+      className="group grid size-10 place-items-center transition-colors hover:bg-ink hover:text-canvas"
     >
-      {mode === "dark" ? <Sun className="size-5" /> : <Moon className="size-5" />}
+      <Icon
+        key={mode}
+        className="size-5 animate-[spin_0.5s_cubic-bezier(0.7,0,0.2,1)_1] motion-reduce:animate-none"
+      />
     </button>
   );
 });

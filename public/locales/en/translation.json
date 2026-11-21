@@ -17,8 +17,6 @@
     "readMore": "Read more",
     "showLess": "Show less",
     "showAll": "Show all {{count}}",
-    "previous": "Previous",
-    "next": "Next",
     "cancel": "Cancel"
   },
   "hero": {
@@ -27,8 +25,8 @@
     "show": "Show {{title}}"
   },
   "home": {
-    "popular": "Popular right now",
-    "topRated": "Highest rated of all time",
+    "popular": "Popular now",
+    "topRated": "All-time best",
     "upcoming": "Coming soon"
   },
   "movies": {
@@ -37,9 +35,9 @@
     "count_other": "{{formatted}} films",
     "genre": "Genre",
     "allGenres": "All genres",
-    "fromYear": "From year",
-    "toYear": "To year",
-    "reset": "Reset filters",
+    "fromYear": "From",
+    "toYear": "To",
+    "reset": "Reset",
     "emptyTitle": "No films match these filters",
     "emptyDesc": "Try another genre or a wider range of years.",
     "sort": {
@@ -49,6 +47,27 @@
       "oldest": "Oldest first",
       "rating": "Highest rated"
     }
+  },
+  "genres": {
+    "28": "Action",
+    "12": "Adventure",
+    "16": "Animation",
+    "35": "Comedy",
+    "80": "Crime",
+    "99": "Documentary",
+    "18": "Drama",
+    "10751": "Family",
+    "14": "Fantasy",
+    "36": "History",
+    "27": "Horror",
+    "10402": "Music",
+    "9648": "Mystery",
+    "10749": "Romance",
+    "878": "Science fiction",
+    "10770": "TV movie",
+    "53": "Thriller",
+    "10752": "War",
+    "37": "Western"
   },
   "bookmark": {
     "save": "Save",
@@ -76,6 +95,61 @@
     "noCrew": "No crew information yet",
     "notFound": "This film could not be loaded"
   },
+  "statuses": {
+    "Released": "Released",
+    "Post Production": "Post-production",
+    "In Production": "In production",
+    "Planned": "Planned",
+    "Rumored": "Rumored",
+    "Canceled": "Canceled"
+  },
+  "departments": {
+    "Acting": "Acting",
+    "Directing": "Directing",
+    "Writing": "Writing",
+    "Production": "Production",
+    "Camera": "Camera",
+    "Editing": "Editing",
+    "Sound": "Sound",
+    "Art": "Art",
+    "Costume & Make-Up": "Costume & make-up",
+    "Visual Effects": "Visual effects",
+    "Crew": "Crew",
+    "Lighting": "Lighting"
+  },
+  "jobs": {
+    "Director": "Director",
+    "Producer": "Producer",
+    "Executive Producer": "Executive producer",
+    "Co-Producer": "Co-producer",
+    "Associate Producer": "Associate producer",
+    "Screenplay": "Screenplay",
+    "Writer": "Writer",
+    "Story": "Story",
+    "Novel": "Novel",
+    "Characters": "Characters",
+    "Original Music Composer": "Composer",
+    "Music": "Music",
+    "Director of Photography": "Cinematographer",
+    "Editor": "Editor",
+    "Casting": "Casting",
+    "Production Design": "Production design",
+    "Art Direction": "Art direction",
+    "Set Decoration": "Set decoration",
+    "Costume Design": "Costume design",
+    "Makeup Artist": "Makeup artist",
+    "Sound Designer": "Sound designer",
+    "Visual Effects Supervisor": "VFX supervisor",
+    "Stunt Coordinator": "Stunt coordinator",
+    "Assistant Director": "Assistant director",
+    "First Assistant Director": "First assistant director",
+    "Second Assistant Director": "Second assistant director",
+    "Script Supervisor": "Script supervisor",
+    "Production Assistant": "Production assistant",
+    "Production Manager": "Production manager",
+    "Casting Director": "Casting director",
+    "Line Producer": "Line producer"
+  },
   "person": {
     "knownFor": "Known for",
     "born": "Born",
@@ -88,7 +162,7 @@
     "notFound": "This person could not be loaded"
   },
   "saved": {
-    "title": "Saved films",
+    "title": "Saved",
     "count_one": "{{count}} film",
     "count_other": "{{count}} films",
     "clear": "Clear all",
@@ -110,8 +184,6 @@
   },
   "footer": {
     "tagline": "Find what to watch tonight and save the rest for later.",
-    "explore": "Explore",
-    "contact": "Contact",
     "data": "Film data by TMDB",
     "rights": "All rights reserved."
   },
@@ -126,7 +198,7 @@
     "retry": "Try again"
   },
   "login": {
-    "title": "Sign in to Your Account",
-    "desc": "Continue with Google to access your personalized movie dashboard."
+    "title": "Sign in to your account",
+    "desc": "Continue with Google to access your personal movie dashboard."
   }
 }

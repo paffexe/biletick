@@ -13,14 +13,14 @@ export const Rating = ({ value, variant = "plain", className }: Props) => {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1 font-semibold tabular-nums",
+        "inline-flex items-center gap-1 font-mono font-bold tabular-nums",
         variant === "overlay"
-          ? "rounded-full bg-black/60 px-2 py-0.5 text-xs text-gold backdrop-blur-sm"
+          ? "border-2 border-ink bg-gold px-1.5 py-0.5 text-[11px] text-[#140e18]"
           : "text-sm text-gold",
         className,
       )}
     >
-      <Star className="size-3.5 fill-current" strokeWidth={0} aria-hidden />
+      <Star className="size-3 fill-current" strokeWidth={0} aria-hidden />
       {value.toFixed(1)}
     </span>
   );

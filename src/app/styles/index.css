@@ -5,6 +5,7 @@
 @theme inline {
   --font-sans: "Onest", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Unbounded", "Onest", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   --color-canvas: var(--c-canvas);
   --color-surface: var(--c-surface);
@@ -15,18 +16,23 @@
   --color-accent: var(--c-accent);
   --color-accent-strong: var(--c-accent-strong);
   --color-accent-text: var(--c-accent-text);
-  --color-gold: #e8b64a;
+  --color-gold: #f2c14e;
   --color-screen: #160f1a;
   --color-screen-ink: #f4eeea;
+
+  --shadow-hard-sm: 3px 3px 0 0 var(--c-ink);
+  --shadow-hard: 5px 5px 0 0 var(--c-ink);
+  --shadow-hard-lg: 8px 8px 0 0 var(--c-ink);
+  --shadow-hard-accent: 5px 5px 0 0 var(--c-accent);
 }
 
 :root {
-  --c-canvas: #f4f2f5;
+  --c-canvas: #f1eff2;
   --c-surface: #ffffff;
-  --c-raised: #e9e4ec;
-  --c-line: #dcd5e0;
-  --c-ink: #1e1623;
-  --c-muted: #675e6c;
+  --c-raised: #e4dfe7;
+  --c-line: #cfc7d4;
+  --c-ink: #140e18;
+  --c-muted: #5f5664;
   --c-accent: #c61f1f;
   --c-accent-strong: #a61919;
   --c-accent-text: #b01b1b;
@@ -35,14 +41,14 @@
 
 .dark {
   --c-canvas: #1b1420;
-  --c-surface: #241b2a;
-  --c-raised: #2f2536;
-  --c-line: #3b3043;
-  --c-ink: #eee8e4;
-  --c-muted: #a69baa;
-  --c-accent: #c61f1f;
-  --c-accent-strong: #dd2c2c;
-  --c-accent-text: #f2645e;
+  --c-surface: #231a29;
+  --c-raised: #2e2435;
+  --c-line: #43374c;
+  --c-ink: #f1ebe6;
+  --c-muted: #a99eae;
+  --c-accent: #d42424;
+  --c-accent-strong: #e53838;
+  --c-accent-text: #ff6b63;
   color-scheme: dark;
 }
 
@@ -69,6 +75,24 @@
   }
 }
 
+@utility press {
+  transition:
+    transform 0.18s cubic-bezier(0.3, 0.7, 0.4, 1),
+    box-shadow 0.18s cubic-bezier(0.3, 0.7, 0.4, 1),
+    background-color 0.18s,
+    color 0.18s;
+
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-hard-lg);
+  }
+
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 0 var(--c-ink);
+  }
+}
+
 @layer base {
   html {
     background-color: var(--c-canvas);
@@ -77,7 +101,6 @@
 
   body {
     @apply bg-canvas font-sans text-ink antialiased;
-    font-feature-settings: "ss01";
   }
 
   ::selection {
@@ -87,13 +110,15 @@
 
   a,
   button {
-    @apply outline-offset-2 focus-visible:outline-2 focus-visible:outline-accent;
+    @apply outline-offset-2 focus-visible:outline-3 focus-visible:outline-accent;
   }
 
   button:not(:disabled) {
     cursor: pointer;
   }
 }
+
+/* motion */
 
 @keyframes hero-progress {
   from {
@@ -107,7 +132,7 @@
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -115,12 +140,120 @@
   }
 }
 
+@keyframes word-up {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes wipe {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes rule {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1.12);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.page-in {
+  animation: page-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
 .hero-progress {
   animation: hero-progress 8s linear both;
 }
 
 .hero-copy {
-  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.25s both;
+}
+
+.ken-burns {
+  animation: ken-burns 9s ease-out both;
+}
+
+.split-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.split-word > span {
+  display: inline-block;
+  animation: word-up 0.75s cubic-bezier(0.7, 0, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+.card-in {
+  animation: wipe 0.7s cubic-bezier(0.7, 0, 0.2, 1) both;
+  animation-delay: calc(min(var(--i, 0), 12) * 50ms);
+}
+
+.marquee-track {
+  animation: marquee 45s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.reveal {
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal[data-inview="false"] {
+  opacity: 0;
+  transform: translateY(36px);
+}
+
+.reveal-rule {
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+[data-inview="true"] .reveal-rule {
+  animation: rule 0.9s cubic-bezier(0.7, 0, 0.2, 1) 0.1s both;
 }
 
 .ant-image {
@@ -128,8 +261,22 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-copy {
-    animation: none;
+  .hero-copy,
+  .page-in,
+  .ken-burns,
+  .card-in,
+  .split-word > span,
+  .marquee-track {
+    animation: none !important;
+  }
+
+  .reveal[data-inview="false"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal-rule {
+    transform: none;
   }
 
   *,

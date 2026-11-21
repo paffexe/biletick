@@ -1,17 +1,16 @@
 import { cn } from "../lib";
 
 const variants = {
-  primary: "bg-accent text-white hover:bg-accent-strong",
-  ghost: "bg-raised/80 text-ink hover:bg-raised",
-  glass: "bg-white/12 text-white ring-1 ring-white/20 backdrop-blur hover:bg-white/20",
-  text: "px-0 text-accent-text hover:underline underline-offset-4",
+  primary: "press border-2 border-ink bg-accent text-white shadow-hard",
+  ghost: "press border-2 border-ink bg-surface text-ink shadow-hard",
+  text: "h-auto border-b-2 border-current px-0 pb-0.5 text-accent-text transition-colors hover:text-ink",
 };
 
 export type ButtonVariant = keyof typeof variants;
 
 export const buttonClass = (variant: ButtonVariant = "primary", className?: string) =>
   cn(
-    "inline-flex h-11 items-center justify-center gap-2 rounded-full px-5 text-sm font-semibold transition-colors",
+    "inline-flex h-12 items-center justify-center gap-2 px-5 text-sm font-bold tracking-wide uppercase",
     variants[variant],
     className,
   );

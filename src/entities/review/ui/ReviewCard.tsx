@@ -16,29 +16,31 @@ export const ReviewCard = memo(({ review }: { review: Review }) => {
     expanded || !isLong ? review.content : `${review.content.slice(0, PREVIEW_LENGTH).trimEnd()}…`;
 
   return (
-    <article className="rounded-2xl border border-line bg-surface p-5 sm:p-6">
-      <header className="flex items-center gap-3">
+    <article className="card-in border-2 border-ink bg-surface p-5 shadow-hard sm:p-6">
+      <header className="flex items-center gap-3 border-b-2 border-ink pb-4">
         {avatar && !avatarFailed ? (
           <img
             src={avatar}
             alt=""
             loading="lazy"
             onError={() => setAvatarFailed(true)}
-            className="size-11 rounded-full object-cover"
+            className="size-11 border-2 border-ink object-cover"
           />
         ) : (
-          <span className="grid size-11 place-items-center rounded-full bg-raised font-display text-sm font-semibold uppercase text-muted">
+          <span className="grid size-11 place-items-center border-2 border-ink bg-accent font-display text-sm font-bold text-white uppercase">
             {review.author.charAt(0)}
           </span>
         )}
         <div className="min-w-0 flex-1">
-          <h3 className="truncate font-semibold">{review.author}</h3>
-          <p className="text-xs text-muted">{formatDate(review.created_at, i18n.language)}</p>
+          <h3 className="truncate font-bold">{review.author}</h3>
+          <p className="font-mono text-xs text-muted">
+            {formatDate(review.created_at, i18n.language)}
+          </p>
         </div>
-        <Rating value={review.author_details.rating} />
+        <Rating value={review.author_details.rating} variant="overlay" />
       </header>
 
-      <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-ink/85 sm:text-[15px]">
+      <p className="mt-4 text-sm leading-relaxed whitespace-pre-line text-ink/85 sm:text-[15px]">
         {text}
       </p>
 
@@ -47,7 +49,7 @@ export const ReviewCard = memo(({ review }: { review: Review }) => {
           type="button"
           onClick={() => setExpanded((v) => !v)}
           aria-expanded={expanded}
-          className="mt-3 text-sm font-semibold text-accent-text underline-offset-4 hover:underline"
+          className="mt-4 border-b-2 border-current pb-0.5 text-xs font-bold tracking-wide text-accent-text uppercase hover:text-ink"
         >
           {expanded ? t("common.showLess") : t("common.readMore")}
         </button>

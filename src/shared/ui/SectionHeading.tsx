@@ -4,20 +4,15 @@ import { cn } from "../lib";
 interface Props {
   title: ReactNode;
   action?: ReactNode;
-  as?: "h1" | "h2";
   className?: string;
 }
 
-export const SectionHeading = ({ title, action, as: Tag = "h2", className }: Props) => (
-  <div className={cn("mb-6 flex items-end justify-between gap-4", className)}>
-    <Tag
-      className={cn(
-        "font-display font-semibold tracking-tight text-balance",
-        Tag === "h1" ? "text-2xl sm:text-3xl lg:text-4xl" : "text-lg sm:text-xl lg:text-2xl",
-      )}
-    >
+export const SectionHeading = ({ title, action, className }: Props) => (
+  <div className={cn("relative mb-7 flex items-end justify-between gap-4 pb-3", className)}>
+    <h2 className="font-display text-xl font-bold tracking-tight text-balance uppercase sm:text-2xl lg:text-[1.75rem]">
       {title}
-    </Tag>
+    </h2>
     {action}
+    <span aria-hidden className="reveal-rule absolute inset-x-0 bottom-0 h-[3px] bg-ink" />
   </div>
 );

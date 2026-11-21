@@ -14,43 +14,51 @@ export const Header = memo(() => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-line/60 bg-canvas/85 backdrop-blur-xl">
+      <header className="sticky top-0 z-40 border-b-[3px] border-ink bg-canvas/90 backdrop-blur-xl">
         <div className="shell flex h-16 items-center gap-6 lg:h-[72px]">
           <Logo />
 
-          <nav className="hidden md:block md:flex-1" aria-label={t("nav.label")}>
-            <ul className="flex items-center justify-center gap-1 lg:gap-2">
-              {NAV_ITEMS.map(({ to, labelKey, icon: Icon, end }) => (
+          <nav className="hidden self-stretch md:block md:flex-1" aria-label={t("nav.label")}>
+            <ul className="flex h-full items-stretch justify-center">
+              {NAV_ITEMS.map(({ to, labelKey, end }) => (
                 <li key={to}>
                   <NavLink
                     to={to}
                     end={end}
                     className={({ isActive }) =>
                       cn(
-                        "relative flex h-10 items-center gap-2 rounded-full px-3.5 text-sm font-medium transition-colors lg:px-4",
-                        isActive
-                          ? "bg-raised text-ink"
-                          : "text-ink/65 hover:bg-raised/60 hover:text-ink",
+                        "group relative flex h-full items-center gap-2 px-4 text-sm font-bold tracking-wide uppercase transition-colors lg:px-5",
+                        isActive ? "text-ink" : "text-muted hover:text-ink",
                       )
                     }
                   >
-                    <Icon className="size-[18px]" />
-                    {t(labelKey)}
-                    {to === "/saved" && <SavedBadge />}
+                    {({ isActive }) => (
+                      <>
+                        {t(labelKey)}
+                        {to === "/saved" && <SavedBadge />}
+                        <span
+                          aria-hidden
+                          className={cn(
+                            "absolute inset-x-3 -bottom-[3px] h-[5px] origin-left bg-accent transition-transform duration-300 ease-[cubic-bezier(0.7,0,0.2,1)]",
+                            isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100 group-hover:bg-ink",
+                          )}
+                        />
+                      </>
+                    )}
                   </NavLink>
                 </li>
               ))}
             </ul>
           </nav>
 
-          <div className="ml-auto flex items-center gap-0.5 md:ml-0">
+          <div className="ml-auto flex items-center md:ml-0">
             <LanguageSwitcher />
             <ThemeToggle />
             <Link
               to="/login"
               aria-label={t("nav.login")}
               title={t("nav.login")}
-              className="grid size-10 place-items-center rounded-full text-ink/80 transition-colors hover:bg-raised hover:text-ink"
+              className="grid size-10 place-items-center transition-colors hover:bg-ink hover:text-canvas"
             >
               <UserRound className="size-5" />
             </Link>
@@ -60,9 +68,9 @@ export const Header = memo(() => {
 
       <nav
         aria-label={t("nav.label")}
-        className="fixed inset-x-0 bottom-0 z-40 border-t border-line/70 bg-canvas/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl md:hidden"
+        className="fixed inset-x-0 bottom-0 z-40 border-t-[3px] border-ink bg-canvas pb-[env(safe-area-inset-bottom)] md:hidden"
       >
-        <ul className="grid grid-cols-4">
+        <ul className="grid grid-cols-4 divide-x-2 divide-ink">
           {NAV_ITEMS.map(({ to, labelKey, icon: Icon, end }) => (
             <li key={to}>
               <NavLink
@@ -70,14 +78,14 @@ export const Header = memo(() => {
                 end={end}
                 className={({ isActive }) =>
                   cn(
-                    "flex h-16 flex-col items-center justify-center gap-1 text-[11px] font-medium transition-colors",
-                    isActive ? "text-accent-text" : "text-muted",
+                    "flex h-16 flex-col items-center justify-center gap-1 text-[10px] font-bold tracking-wide uppercase transition-colors duration-200",
+                    isActive ? "bg-ink text-canvas" : "text-muted active:bg-raised",
                   )
                 }
               >
                 <span className="relative">
-                  <Icon className="size-[22px]" />
-                  {to === "/saved" && <SavedBadge className="absolute -right-3 -top-1.5" />}
+                  <Icon className="size-[22px]" strokeWidth={2.25} />
+                  {to === "/saved" && <SavedBadge className="absolute -top-1.5 -right-3" />}
                 </span>
                 {t(labelKey)}
               </NavLink>

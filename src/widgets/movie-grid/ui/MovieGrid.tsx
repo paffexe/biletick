@@ -13,14 +13,19 @@ interface Props {
 export const MovieGrid = memo(({ movies, loading, skeletonCount = 10, className }: Props) => (
   <div
     className={cn(
-      "grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-5 lg:grid-cols-4 xl:grid-cols-5",
+      "grid grid-cols-2 gap-x-4 gap-y-9 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:grid-cols-5",
       className,
     )}
   >
     {loading && !movies
       ? Array.from({ length: skeletonCount }, (_, i) => <MovieCardSkeleton key={i} />)
-      : movies?.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} action={<BookmarkButton movie={movie} />} />
+      : movies?.map((movie, i) => (
+          <MovieCard
+            key={movie.id}
+            movie={movie}
+            index={i}
+            action={<BookmarkButton movie={movie} />}
+          />
         ))}
   </div>
 ));

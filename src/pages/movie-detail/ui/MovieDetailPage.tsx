@@ -1,20 +1,21 @@
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Clapperboard, Film, MessageSquareText, Users } from "lucide-react";
+import { Film } from "lucide-react";
 import { useMovieDetails, useMovieRecommendations } from "@/entities/movie";
 import { cn } from "@/shared/lib";
-import { ButtonLink, EmptyState, PageLoader } from "@/shared/ui";
+import { ButtonLink, EmptyState, PageLoader, Reveal } from "@/shared/ui";
 import { MovieGallery, MovieOverview } from "@/widgets/movie-overview";
 import { MovieRail } from "@/widgets/movie-rail";
 
 const TABS = [
-  { to: "", labelKey: "movie.reviews", icon: MessageSquareText, end: true },
-  { to: "cast", labelKey: "movie.cast", icon: Users },
-  { to: "crew", labelKey: "movie.crew", icon: Clapperboard },
+  { to: "", labelKey: "movie.reviews", end: true },
+  { to: "cast", labelKey: "movie.cast" },
+  { to: "crew", labelKey: "movie.crew" },
 ];
 
 export const MovieDetailPage = () => {
   const { id = "" } = useParams();
+  const { pathname } = useLocation();
   const { t } = useTranslation();
   const { data: movie, isLoading, isError } = useMovieDetails(id);
   const recommendations = useMovieRecommendations(id);
@@ -36,13 +37,13 @@ export const MovieDetailPage = () => {
     <>
       <MovieOverview movie={movie} />
 
-      <div className="shell mt-14 space-y-14 lg:mt-20 lg:space-y-20">
+      <div className="shell mt-20 space-y-20 lg:mt-28 lg:space-y-28">
         <MovieGallery movieId={id} />
 
-        <section>
-          <nav className="mb-8 border-b border-line">
-            <ul className="-mb-px flex gap-1 overflow-x-auto no-scrollbar sm:gap-4">
-              {TABS.map(({ to, labelKey, icon: Icon, end }) => (
+        <Reveal>
+          <nav className="mb-9 border-b-[3px] border-ink">
+            <ul className="flex overflow-x-auto no-scrollbar">
+              {TABS.map(({ to, labelKey, end }) => (
                 <li key={labelKey}>
                   <NavLink
                     to={to}
@@ -51,22 +52,21 @@ export const MovieDetailPage = () => {
                     preventScrollReset
                     className={({ isActive }) =>
                       cn(
-                        "flex h-12 items-center gap-2 border-b-2 px-3 text-sm font-semibold whitespace-nowrap transition-colors sm:text-base",
-                        isActive
-                          ? "border-accent text-ink"
-                          : "border-transparent text-muted hover:text-ink",
+                        "flex h-12 items-center px-4 font-display text-sm font-bold whitespace-nowrap uppercase transition-colors duration-200 sm:px-6 sm:text-base",
+                        isActive ? "bg-ink text-canvas" : "text-muted hover:bg-raised hover:text-ink",
                       )
                     }
                   >
-                    <Icon className="size-[18px]" />
                     {t(labelKey)}
                   </NavLink>
                 </li>
               ))}
             </ul>
           </nav>
-          <Outlet />
-        </section>
+          <div key={pathname} className="page-in">
+            <Outlet />
+          </div>
+        </Reveal>
 
         <MovieRail
           title={t("movie.similar")}

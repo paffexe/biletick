@@ -19,7 +19,7 @@ export const LanguageSwitcher = memo(() => {
         items: LANGUAGES.map(({ code, label }) => ({
           key: code,
           label: (
-            <span className="flex min-w-32 items-center justify-between gap-4">
+            <span className="flex min-w-32 items-center justify-between gap-4 font-semibold">
               {label}
               {code === current && <Check className="size-4" />}
             </span>
@@ -30,10 +30,10 @@ export const LanguageSwitcher = memo(() => {
       <button
         type="button"
         aria-label={t("header.language")}
-        className="flex h-10 items-center gap-1.5 rounded-full px-3 text-sm font-semibold text-ink/80 transition-colors hover:bg-raised hover:text-ink"
+        className="flex h-10 items-center gap-1.5 px-2.5 font-mono text-sm font-bold uppercase transition-colors hover:bg-ink hover:text-canvas"
       >
         <Languages className="size-[18px]" />
-        <span className="uppercase">{current}</span>
+        {current}
       </button>
     </Dropdown>
   );

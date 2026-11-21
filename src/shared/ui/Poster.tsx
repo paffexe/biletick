@@ -44,7 +44,7 @@ export const Poster = ({
           className={cn("absolute inset-0 size-full object-cover", imgClassName)}
         />
       ) : (
-        <div className="absolute inset-0 grid place-items-center text-muted/60">
+        <div className="absolute inset-0 grid place-items-center text-muted/70">
           <Icon className="size-1/4 max-w-12" strokeWidth={1.25} />
         </div>
       )}

@@ -8,8 +8,9 @@ export const SavedBadge = ({ className }: { className?: string }) => {
 
   return (
     <span
+      key={count}
       className={cn(
-        "grid h-[18px] min-w-[18px] place-items-center rounded-full bg-accent px-1 text-[11px] font-semibold leading-none text-white tabular-nums",
+        "grid h-[18px] min-w-[18px] animate-[page-in_0.3s_ease-out] place-items-center bg-accent px-1 font-mono text-[10px] leading-none font-bold text-white tabular-nums",
         className,
       )}
     >

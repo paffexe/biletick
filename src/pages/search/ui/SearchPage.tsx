@@ -12,13 +12,13 @@ export const SearchPage = () => {
     useMovieSearch();
 
   return (
-    <div className="shell pt-8 sm:pt-12">
-      <div className="mx-auto max-w-2xl">
+    <div className="shell pt-10 sm:pt-14">
+      <div className="mx-auto max-w-3xl">
         <h1 className="sr-only">{t("nav.search")}</h1>
         <SearchField value={value} onChange={setValue} loading={isFetching} />
       </div>
 
-      <div className={cn("mt-10 transition-opacity", isPlaceholderData && "opacity-60")}>
+      <div className={cn("mt-12 transition-opacity", isPlaceholderData && "opacity-50")}>
         {!query ? (
           <EmptyState
             icon={TextSearch}
@@ -34,11 +34,11 @@ export const SearchPage = () => {
         ) : (
           <>
             {data && (
-              <p className="mb-6 text-sm text-muted">
+              <p className="mb-7 border-b-[3px] border-ink pb-3 font-mono text-xs font-bold text-muted uppercase">
                 {t("search.results", { count: data.total_results })}
               </p>
             )}
-            <MovieGrid movies={data?.results} loading={isLoading} />
+            <MovieGrid key={query} movies={data?.results} loading={isLoading} />
             <MoviePagination totalResults={data?.total_results} />
           </>
         )}

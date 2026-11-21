@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { UserRound } from "lucide-react";
 import { usePerson, usePersonFilmography } from "@/entities/person";
-import { EmptyState, PageLoader, SectionHeading } from "@/shared/ui";
+import { EmptyState, PageLoader, Reveal, SectionHeading } from "@/shared/ui";
 import { MovieGrid } from "@/widgets/movie-grid";
 import { PersonProfile } from "@/widgets/person-profile";
 
@@ -19,10 +19,10 @@ export const PersonPage = () => {
     <>
       <PersonProfile person={person} />
       {(filmography.isLoading || !!filmography.data?.length) && (
-        <section className="shell mt-16 lg:mt-20">
+        <Reveal className="shell mt-20 lg:mt-28">
           <SectionHeading title={t("person.filmography")} />
           <MovieGrid movies={filmography.data} loading={filmography.isLoading} />
-        </section>
+        </Reveal>
       )}
     </>
   );
