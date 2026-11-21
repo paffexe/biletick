@@ -1,70 +1,39 @@
-import { createImageUrl } from "@/shared/utils";
-import { memo, type FC } from "react";
-import type { IMovie } from "../model/types";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "@/features/bookmark/model";
-import type { RootState } from "@/app/store";
-import { BsBookmark } from "react-icons/bs";
-import { BsFillBookmarkFill } from "react-icons/bs";
+import { memo, type CSSProperties, type ReactNode } from "react";
+import { Link } from "react-router-dom";
+import { Poster, Rating } from "@/shared/ui";
+import { getYear } from "@/shared/lib";
+import type { Movie } from "../model/types";
 
 interface Props {
-  movie: IMovie;
+  movie: Movie;
+  action?: ReactNode;
+  index?: number;
 }
 
-export const MovieCard: FC<Props> = memo(({ movie }) => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const favourites = useSelector((state: RootState) => state.favourites.value); 
-  const isFavourited = favourites.some((m) => m.id === movie.id);
-
-  const toggleFavourite = (e: React.MouseEvent) => {
-    e.stopPropagation(); 
-    if (isFavourited) {
-      dispatch(removeFromCart(movie));
-    } else {
-      dispatch(addToCart(movie));
-    }
-  };
-
-  return (
-    <div
-      onClick={() => navigate(`/movie/${movie.id}`)}
-      className="bg-white dark:bg-slate-900 rounded-xl shadow-md hover:shadow-xl cursor-pointer transition-transform hover:-translate-y-1 mb-5 relative"
-    >
-      <div className="overflow-hidden rounded-t-xl">
-        <img
-          src={createImageUrl(movie.poster_path)}
+export const MovieCard = memo(({ movie, action, index = 0 }: Props) => (
+  <article className="card-in group relative" style={{ "--i": index } as CSSProperties}>
+    <Link to={`/movie/${movie.id}`} className="block">
+      <div className="border-2 border-ink bg-ink shadow-hard-sm transition duration-200 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 group-hover:shadow-hard-lg">
+        <Poster
+          path={movie.poster_path}
           alt={movie.title}
-          className="w-full h-[320px] object-cover hover:scale-105 transition-transform"
+          imgClassName="transition duration-500 group-hover:scale-[1.04]"
         />
       </div>
-
-      <button
-        onClick={toggleFavourite}
-        className="absolute top-3 right-3 text-red-500 text-xl bg-white/70 dark:bg-black/60 rounded-2xl p-1.5"
-      >
-        {isFavourited ? <BsFillBookmarkFill /> : <BsBookmark />}
-      </button>
-
-      <div className="p-4 flex flex-col gap-2">
-        <h3
-          className="text-lg font-semibold text-gray-800 dark:text-white line-clamp-1"
-          title={movie.title}
-        >
-          {movie.title}
-        </h3>
-
-        <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-300">
-          <span className="font-medium text-yellow-500">
-            ⭐ {movie.vote_average.toFixed(1)}
-          </span>
-          <span className="font-semibold">
-            {movie.release_date.split("-")[0]}
-          </span>
-        </div>
+      <h3 className="mt-3 line-clamp-2 text-sm leading-snug font-bold sm:text-[15px]">
+        {movie.title}
+      </h3>
+      <p className="mt-0.5 font-mono text-xs text-muted">{getYear(movie.release_date) || "—"}</p>
+    </Link>
+    <Rating
+      value={movie.vote_average}
+      variant="overlay"
+      className="pointer-events-none absolute top-0 left-0 transition-transform group-hover:-translate-x-0.5 group-hover:-translate-y-0.5"
+    />
+    {action && (
+      <div className="absolute top-2 right-2 transition group-hover:-translate-x-0.5 group-hover:-translate-y-0.5">
+        {action}
       </div>
-    </div>
-  );
-});
+    )}
+  </article>
+));

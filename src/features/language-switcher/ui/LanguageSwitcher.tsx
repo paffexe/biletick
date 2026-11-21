@@ -1,79 +1,40 @@
-import { Button, Dropdown, message, Space, type MenuProps } from "antd";
-import React, { memo, useState, type JSX } from "react";
-import { DownOutlined } from "@ant-design/icons";
+import { memo } from "react";
+import { Dropdown } from "antd";
 import { useTranslation } from "react-i18next";
+import { Check, Languages } from "lucide-react";
+import { LANGUAGES } from "@/shared/config";
 
-import rus_flag from "@/shared/assets/russian_flag.svg";
-import uzb_flag from "@/shared/assets/uzb_flag.svg";
-import usa_flag from "@/shared/assets/usa_flag.svg";
-
-interface LangItem {
-  label: string;
-  key: string;
-  icon: JSX.Element;
-}
-
-const items: MenuProps["items"] = [
-  {
-    label: "O'zbek",
-    key: "uz",
-    icon: (
-      <img src={uzb_flag} style={{ width: "20px", height: "20px" }} alt="" />
-    ),
-  },
-  {
-    label: "Русский",
-    key: "ru",
-    icon: (
-      <img src={rus_flag} style={{ width: "20px", height: "20px" }} alt="" />
-    ),
-  },
-  {
-    label: "English",
-    key: "en",
-    icon: (
-      <img src={usa_flag} style={{ width: "20px", height: "20px" }} alt="" />
-    ),
-  },
-];
-
-export const LanguageSwitcher: React.FC = memo(() => {
-  const { i18n } = useTranslation();
-  const [language, setLang] = useState<LangItem>(items[0] as LangItem);
-
-  const handleMenuClick: MenuProps["onClick"] = (e) => {
-    const clickedItem = items.find((item) => (item as LangItem).key === e.key);
-
-    if (clickedItem) {
-      setLang(clickedItem as LangItem);
-      i18n.changeLanguage(e.key);
-      message.success(
-        `Language switched to: ${(clickedItem as LangItem).label}`
-      );
-    }
-  };
+export const LanguageSwitcher = memo(() => {
+  const { t, i18n } = useTranslation();
+  const current = i18n.resolvedLanguage ?? "uz";
 
   return (
     <Dropdown
+      trigger={["click"]}
+      placement="bottomRight"
       menu={{
-        items,
-        onClick: handleMenuClick,
-        className: "custom-dropdown-menu",
+        selectable: true,
+        selectedKeys: [current],
+        onClick: ({ key }) => i18n.changeLanguage(key),
+        items: LANGUAGES.map(({ code, label }) => ({
+          key: code,
+          label: (
+            <span className="flex min-w-32 items-center justify-between gap-4 font-semibold">
+              {label}
+              {code === current && <Check className="size-4" />}
+            </span>
+          ),
+        })),
       }}
     >
-      <Button
-        style={{
-          width: "135px",
-          color: "black",
-        }}
-        className="custom-btn"
+      <button
+        type="button"
+        aria-label={t("header.language")}
+        className="flex h-10 items-center gap-1.5 px-2.5 font-mono text-sm font-bold uppercase transition-colors hover:bg-ink hover:text-canvas"
       >
-        <Space>
-          {language.icon}
-          {language.label}
-          <DownOutlined />
-        </Space>
-      </Button>
+        <Languages className="size-[18px]" />
+        {current}
+      </button>
     </Dropdown>
   );
 });

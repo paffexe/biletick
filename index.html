@@ -1,14 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="uz">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Biletick — find what to watch, explore cast and crew, save films for later." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://image.tmdb.org" />
     <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/public/LOGOTYPE – BILETICK.svg"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Onest:wght@400;500;600;700&family=Unbounded:wght@600;700;800&display=swap"
+      rel="stylesheet"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie site</title>
+    <title>Biletick — Movies</title>
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || (!t && !matchMedia("(prefers-color-scheme: light)").matches)) {
+          document.documentElement.classList.add("dark");
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

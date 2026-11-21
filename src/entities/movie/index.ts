@@ -1,6 +1,4 @@
-
-export * from "./model/movieSlice"
-export * from "./model/types"
-export * from "./model/useMovie"
-export * from "./ui/MovieCard"
-export * from "./ui/detail/MovieInfo"
+export * from "./model/types";
+export * from "./model/queries";
+export { MovieCard } from "./ui/MovieCard";
+export { MovieCardSkeleton } from "./ui/MovieCardSkeleton";

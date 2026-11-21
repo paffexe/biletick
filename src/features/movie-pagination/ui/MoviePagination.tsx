@@ -1,29 +1,38 @@
-import { Pagination, type PaginationProps } from "antd";
-import { memo, type FC } from "react";
+import { memo } from "react";
+import { Pagination } from "antd";
 import { useSearchParams } from "react-router-dom";
+import { MAX_TMDB_PAGES } from "@/shared/config";
 
 interface Props {
-  page: string;
-  total_pages: number;
+  totalResults?: number;
 }
 
-export const MoviePagination: FC<Props> = memo((props) => {
-  const { page, total_pages } = props;
-  const [searchParams, setSearchParams] = useSearchParams();
+const PAGE_SIZE = 20;
 
-  const onChange: PaginationProps["onChange"] = (p) => {
-    searchParams.set("page", p.toString());
+export const MoviePagination = memo(({ totalResults = 0 }: Props) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = Number(searchParams.get("page") ?? 1);
+  const total = Math.min(totalResults, MAX_TMDB_PAGES * PAGE_SIZE);
+
+  if (total <= PAGE_SIZE) return null;
+
+  const onChange = (next: number) => {
+    searchParams.set("page", String(next));
     setSearchParams(searchParams);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
   return (
-    <div className="py-10 flex justify-center">
+    <nav className="mt-14 flex justify-center">
       <Pagination
-        current={Number(page)}
+        current={page}
+        total={total}
+        pageSize={PAGE_SIZE}
         onChange={onChange}
-        total={total_pages > 10000 ? 10000 : total_pages}
-        pageSize={20}
         showSizeChanger={false}
+        showLessItems
+        responsive
       />
-    </div>
+    </nav>
   );
 });

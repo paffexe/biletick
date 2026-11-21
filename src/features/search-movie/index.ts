@@ -1,1 +1,2 @@
-export * from "./ui/SearchMovie"
+export { SearchField } from "./ui/SearchField";
+export { useMovieSearch } from "./model/useMovieSearch";

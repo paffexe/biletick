@@ -9,14 +9,11 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: "uz",
-    debug: false,
-    backend: {
-      loadPath: "/locales/{{lng}}/{{ns}}.json",
-    },
-
-    interpolation: {
-      escapeValue: false,
-    },
+    supportedLngs: ["uz", "ru", "en"],
+    load: "languageOnly",
+    backend: { loadPath: "/locales/{{lng}}/{{ns}}.json" },
+    detection: { order: ["localStorage", "navigator"], caches: ["localStorage"] },
+    interpolation: { escapeValue: false },
   });
 
 export default i18n;
