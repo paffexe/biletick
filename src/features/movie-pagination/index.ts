@@ -1,2 +1,1 @@
-
-export * from "./ui/MoviePagination"
+export { MoviePagination } from "./ui/MoviePagination";

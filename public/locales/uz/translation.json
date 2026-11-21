@@ -1,41 +1,132 @@
 {
+  "nav": {
+    "label": "Asosiy navigatsiya",
+    "home": "Bosh sahifa",
+    "movies": "Filmlar",
+    "saved": "Saqlanganlar",
+    "search": "Qidiruv",
+    "login": "Kirish"
+  },
   "header": {
-    "nav": {
-      "main": "Bosh sahifa",
-      "movies": "Filmlar",
-      "saved": "Saqlanganlar",
-      "search": "Qidiruv",
-      "login": "Kirish"
+    "language": "Tilni o‘zgartirish",
+    "toLight": "Yorug‘ mavzuga o‘tish",
+    "toDark": "Qorong‘i mavzuga o‘tish"
+  },
+  "common": {
+    "seeAll": "Barchasi",
+    "readMore": "Batafsil o‘qish",
+    "showLess": "Yig‘ish",
+    "showAll": "Barchasini ko‘rsatish ({{count}})",
+    "previous": "Oldingi",
+    "next": "Keyingi",
+    "cancel": "Bekor qilish"
+  },
+  "hero": {
+    "details": "Batafsil",
+    "trending": "Shu haftaning trendlari",
+    "show": "«{{title}}»ni ko‘rsatish"
+  },
+  "home": {
+    "popular": "Hozir mashhur",
+    "topRated": "Eng yuqori baholanganlar",
+    "upcoming": "Tez kunda"
+  },
+  "movies": {
+    "title": "Filmlar",
+    "count_one": "{{formatted}} ta film",
+    "count_other": "{{formatted}} ta film",
+    "genre": "Janr",
+    "allGenres": "Barcha janrlar",
+    "fromYear": "Yildan",
+    "toYear": "Yilgacha",
+    "reset": "Filtrlarni tozalash",
+    "emptyTitle": "Bu filtrlar bo‘yicha film topilmadi",
+    "emptyDesc": "Boshqa janrni tanlang yoki yillar oralig‘ini kengaytiring.",
+    "sort": {
+      "label": "Saralash",
+      "popularity": "Eng mashhur",
+      "newest": "Avval yangilari",
+      "oldest": "Avval eskilari",
+      "rating": "Yuqori reyting"
     }
+  },
+  "bookmark": {
+    "save": "Saqlash",
+    "saved": "Saqlangan",
+    "add": "«{{title}}»ni saqlash",
+    "remove": "«{{title}}»ni saqlanganlardan olib tashlash"
+  },
+  "movie": {
+    "homepage": "Rasmiy sayt",
+    "duration": "{{h}} soat {{m}} daq",
+    "release": "Chiqqan sana",
+    "status": "Holati",
+    "language": "Asl tili",
+    "budget": "Byudjet",
+    "revenue": "Kassa",
+    "votes": "Ovozlar",
+    "gallery": "Kadrlar",
+    "reviews": "Taqrizlar",
+    "cast": "Aktyorlar",
+    "crew": "Suratga olish guruhi",
+    "similar": "Sizga yoqishi mumkin",
+    "noReviews": "Hozircha taqriz yo‘q",
+    "noReviewsDesc": "TMDB’da bu film haqida hali hech kim taqriz yozmagan.",
+    "noCast": "Aktyorlar haqida ma’lumot yo‘q",
+    "noCrew": "Suratga olish guruhi haqida ma’lumot yo‘q",
+    "notFound": "Filmni yuklab bo‘lmadi"
+  },
+  "person": {
+    "knownFor": "Faoliyati",
+    "born": "Tug‘ilgan sana",
+    "died": "Vafot etgan sana",
+    "age": "{{age}} yosh",
+    "birthplace": "Tug‘ilgan joyi",
+    "biography": "Biografiya",
+    "noBiography": "Biografiya hali mavjud emas.",
+    "filmography": "Filmografiya",
+    "notFound": "Sahifani yuklab bo‘lmadi"
+  },
+  "saved": {
+    "title": "Saqlangan filmlar",
+    "count_one": "{{count}} ta film",
+    "count_other": "{{count}} ta film",
+    "clear": "Tozalash",
+    "clearConfirm": "Barcha saqlangan filmlar o‘chirilsinmi?",
+    "clearOk": "O‘chirish",
+    "emptyTitle": "Hali hech narsa saqlanmagan",
+    "emptyDesc": "Filmni shu yerda saqlash uchun posterdagi belgini bosing.",
+    "browse": "Filmlarni ko‘rish"
+  },
+  "search": {
+    "placeholder": "Nomi bo‘yicha qidirish",
+    "clear": "Qidiruvni tozalash",
+    "startTitle": "Film toping",
+    "startDesc": "Film nomini yozing — bir qismi ham yetadi.",
+    "emptyTitle": "«{{query}}» bo‘yicha hech narsa topilmadi",
+    "emptyDesc": "Yozilishini tekshiring yoki qisqaroq so‘rov kiriting.",
+    "results_one": "{{count}} ta natija",
+    "results_other": "{{count}} ta natija"
   },
   "footer": {
-    "about": {
-      "title": "Biz haqimizda",
-      "publicOffer": "Ommaviy oferta",
-      "advertising": "Reklama",
-      "faq": "Savol-javob",
-      "contacts": "Aloqa"
-    },
-    "categories": {
-      "title": "Kategoriyalar",
-      "movies": "Filmlar",
-      "theater": "Teatr",
-      "concerts": "Konsertlar",
-      "sports": "Sport"
-    },
-    "contact": {
-      "title": "Biz bilan bog‘laning",
-      "phone": "+998 (91) 012-20-77",
-      "follow": "Ijtimoiy tarmoqlarda kuzating"
-    }
+    "tagline": "Bugun nima ko‘rishni tanlang, qolganini keyinga saqlab qo‘ying.",
+    "explore": "Bo‘limlar",
+    "contact": "Aloqa",
+    "data": "Film ma’lumotlari — TMDB",
+    "rights": "Barcha huquqlar himoyalangan."
   },
-
+  "notFound": {
+    "title": "Sahifa topilmadi",
+    "desc": "Havola eskirgan yoki sahifa o‘chirilgan.",
+    "home": "Bosh sahifaga"
+  },
+  "error": {
+    "title": "Filmlarni yuklab bo‘lmadi",
+    "desc": "Internet aloqasini tekshirib, qayta urinib ko‘ring.",
+    "retry": "Qayta urinish"
+  },
   "login": {
     "title": "Akkauntga kiring",
     "desc": "Shaxsiy kino panelingizga kirish uchun Google orqali davom eting."
-  },
-  "saved": {
-    "desc": "Hali hech qanday film saqlanmagan.",
-    "title": "Mening sevimlilarim"
   }
 }

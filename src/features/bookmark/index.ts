@@ -1,2 +1,9 @@
-export { default as cartReducer } from "./model/index";
-export * from "./model/index";
+export {
+  bookmarksSlice,
+  toggleBookmark,
+  clearBookmarks,
+  selectBookmarks,
+  selectIsBookmarked,
+  BOOKMARKS_KEY,
+} from "./model/slice";
+export { BookmarkButton } from "./ui/BookmarkButton";

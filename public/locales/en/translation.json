@@ -1,46 +1,132 @@
 {
+  "nav": {
+    "label": "Main navigation",
+    "home": "Home",
+    "movies": "Movies",
+    "saved": "Saved",
+    "search": "Search",
+    "login": "Sign in"
+  },
   "header": {
-    "nav": {
-      "main": "Home",
-      "movies": "Movies",
-      "saved": "Saved",
-      "search": "Search",
-      "login": "Login"
+    "language": "Change language",
+    "toLight": "Switch to light theme",
+    "toDark": "Switch to dark theme"
+  },
+  "common": {
+    "seeAll": "See all",
+    "readMore": "Read more",
+    "showLess": "Show less",
+    "showAll": "Show all {{count}}",
+    "previous": "Previous",
+    "next": "Next",
+    "cancel": "Cancel"
+  },
+  "hero": {
+    "details": "View details",
+    "trending": "Trending this week",
+    "show": "Show {{title}}"
+  },
+  "home": {
+    "popular": "Popular right now",
+    "topRated": "Highest rated of all time",
+    "upcoming": "Coming soon"
+  },
+  "movies": {
+    "title": "Movies",
+    "count_one": "{{formatted}} film",
+    "count_other": "{{formatted}} films",
+    "genre": "Genre",
+    "allGenres": "All genres",
+    "fromYear": "From year",
+    "toYear": "To year",
+    "reset": "Reset filters",
+    "emptyTitle": "No films match these filters",
+    "emptyDesc": "Try another genre or a wider range of years.",
+    "sort": {
+      "label": "Sort by",
+      "popularity": "Most popular",
+      "newest": "Newest first",
+      "oldest": "Oldest first",
+      "rating": "Highest rated"
     }
   },
-  "footer": {
-    "about": {
-      "title": "About Us",
-      "publicOffer": "Public Offer",
-      "advertising": "Advertising",
-      "faq": "FAQ",
-      "contacts": "Contacts"
-    },
-    "categories": {
-      "title": "Categories",
-      "movies": "Movies",
-      "theater": "Theater",
-      "concerts": "Concerts",
-      "sports": "Sports"
-    },
-    "contact": {
-      "title": "Contact Us",
-      "phone": "+998 (91) 012-20-77",
-      "follow": "Follow us"
-    }
+  "bookmark": {
+    "save": "Save",
+    "saved": "Saved",
+    "add": "Save “{{title}}”",
+    "remove": "Remove “{{title}}” from saved"
   },
-  "search": {
-    "placeholder": "Search movies",
-    "noResults": "No movies found",
-    "startTyping": "Start typing to search movies"
+  "movie": {
+    "homepage": "Official site",
+    "duration": "{{h}}h {{m}}m",
+    "release": "Release date",
+    "status": "Status",
+    "language": "Original language",
+    "budget": "Budget",
+    "revenue": "Box office",
+    "votes": "Votes",
+    "gallery": "Stills",
+    "reviews": "Reviews",
+    "cast": "Cast",
+    "crew": "Crew",
+    "similar": "You might also like",
+    "noReviews": "No reviews yet",
+    "noReviewsDesc": "Nobody has reviewed this film on TMDB so far.",
+    "noCast": "No cast information yet",
+    "noCrew": "No crew information yet",
+    "notFound": "This film could not be loaded"
   },
-
-  "login": {
-    "title": "Sign in to Your Account",
-    "desc": " Continue with Google to access your personalized movie dashboard."
+  "person": {
+    "knownFor": "Known for",
+    "born": "Born",
+    "died": "Died",
+    "age": "age {{age}}",
+    "birthplace": "Place of birth",
+    "biography": "Biography",
+    "noBiography": "No biography available yet.",
+    "filmography": "Filmography",
+    "notFound": "This person could not be loaded"
   },
   "saved": {
-    "desc": "No movies saved yet.",
-    "title": "My favourites"
+    "title": "Saved films",
+    "count_one": "{{count}} film",
+    "count_other": "{{count}} films",
+    "clear": "Clear all",
+    "clearConfirm": "Remove all saved films?",
+    "clearOk": "Remove",
+    "emptyTitle": "Nothing saved yet",
+    "emptyDesc": "Tap the bookmark on any poster to keep the film here.",
+    "browse": "Browse movies"
+  },
+  "search": {
+    "placeholder": "Search by title",
+    "clear": "Clear search",
+    "startTitle": "Find a film",
+    "startDesc": "Type a title, even a part of it.",
+    "emptyTitle": "Nothing found for “{{query}}”",
+    "emptyDesc": "Check the spelling or try a shorter title.",
+    "results_one": "{{count}} result",
+    "results_other": "{{count}} results"
+  },
+  "footer": {
+    "tagline": "Find what to watch tonight and save the rest for later.",
+    "explore": "Explore",
+    "contact": "Contact",
+    "data": "Film data by TMDB",
+    "rights": "All rights reserved."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "desc": "The link may be broken or the page was removed.",
+    "home": "Back to home"
+  },
+  "error": {
+    "title": "Couldn’t load films",
+    "desc": "Check your connection and try again.",
+    "retry": "Try again"
+  },
+  "login": {
+    "title": "Sign in to Your Account",
+    "desc": "Continue with Google to access your personalized movie dashboard."
   }
 }

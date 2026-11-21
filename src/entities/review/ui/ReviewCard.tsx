@@ -1,45 +1,57 @@
 import { memo, useState } from "react";
-import { createImageUrl } from "../../../shared/utils";
+import { useTranslation } from "react-i18next";
+import { formatDate, tmdbImage } from "@/shared/lib";
+import { Rating } from "@/shared/ui";
+import type { Review } from "../model/types";
 
-export const ReviewCard = memo(({ elem }: { elem: any }) => {
+const PREVIEW_LENGTH = 420;
+
+export const ReviewCard = memo(({ review }: { review: Review }) => {
+  const { t, i18n } = useTranslation();
   const [expanded, setExpanded] = useState(false);
-  const toggleExpand = () => setExpanded(!expanded);
-
-  const preview =
-    elem.content.length > 200
-      ? elem.content.slice(0, 200) + "..."
-      : elem.content;
+  const [avatarFailed, setAvatarFailed] = useState(false);
+  const avatar = tmdbImage(review.author_details.avatar_path, "w92");
+  const isLong = review.content.length > PREVIEW_LENGTH;
+  const text =
+    expanded || !isLong ? review.content : `${review.content.slice(0, PREVIEW_LENGTH).trimEnd()}…`;
 
   return (
-    <div className="bg-[#eaeaea] dark:bg-[#1d1d1d80] rounded-2xl p-5 shadow-md">
-      <div className="flex items-center gap-4 mb-3">
-        <img
-          src={createImageUrl(elem.author_details.avatar_path)}
-          alt={elem.username}
-          className="w-12 h-12 rounded-full border-2 border-[#c61f1f] object-cover"
-        />
-        <div>
-          <h3 className="font-semibold text-[#c61f1f]">{elem.author}</h3>
-          {elem.author_details.rating && (
-            <div className="text-sm text-gray-600 dark:text-gray-300">
-              ⭐ {elem.author_details.rating}/10
-            </div>
-          )}
+    <article className="rounded-2xl border border-line bg-surface p-5 sm:p-6">
+      <header className="flex items-center gap-3">
+        {avatar && !avatarFailed ? (
+          <img
+            src={avatar}
+            alt=""
+            loading="lazy"
+            onError={() => setAvatarFailed(true)}
+            className="size-11 rounded-full object-cover"
+          />
+        ) : (
+          <span className="grid size-11 place-items-center rounded-full bg-raised font-display text-sm font-semibold uppercase text-muted">
+            {review.author.charAt(0)}
+          </span>
+        )}
+        <div className="min-w-0 flex-1">
+          <h3 className="truncate font-semibold">{review.author}</h3>
+          <p className="text-xs text-muted">{formatDate(review.created_at, i18n.language)}</p>
         </div>
-      </div>
+        <Rating value={review.author_details.rating} />
+      </header>
 
-      <p className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed">
-        {expanded ? elem.content : preview}
+      <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-ink/85 sm:text-[15px]">
+        {text}
       </p>
 
-      {elem.content.length > 200 && (
+      {isLong && (
         <button
-          onClick={toggleExpand}
-          className="mt-3 text-[#c61f1f] font-medium hover:underline"
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          aria-expanded={expanded}
+          className="mt-3 text-sm font-semibold text-accent-text underline-offset-4 hover:underline"
         >
-          {expanded ? "Show less" : "Show more"}
+          {expanded ? t("common.showLess") : t("common.readMore")}
         </button>
       )}
-    </div>
+    </article>
   );
 });
