@@ -1,7 +1,9 @@
 import { memo } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { UserRound } from "lucide-react";
+import { selectUser } from "@/features/auth";
 import { LanguageSwitcher } from "@/features/language-switcher";
 import { ThemeToggle } from "@/features/theme";
 import { cn } from "@/shared/lib";
@@ -11,6 +13,8 @@ import { SavedBadge } from "./SavedBadge";
 
 export const Header = memo(() => {
   const { t } = useTranslation();
+  const user = useSelector(selectUser);
+  const accountLabel = user ? `${t("nav.account")}: ${user.name}` : t("nav.login");
 
   return (
     <>
@@ -56,11 +60,17 @@ export const Header = memo(() => {
             <ThemeToggle />
             <Link
               to="/login"
-              aria-label={t("nav.login")}
-              title={t("nav.login")}
+              aria-label={accountLabel}
+              title={accountLabel}
               className="grid size-10 place-items-center transition-colors hover:bg-ink hover:text-canvas"
             >
-              <UserRound className="size-5" />
+              {user ? (
+                <span className="grid size-7 place-items-center bg-accent font-display text-sm font-extrabold text-white uppercase">
+                  {user.name[0]}
+                </span>
+              ) : (
+                <UserRound className="size-5" />
+              )}
             </Link>
           </div>
         </div>

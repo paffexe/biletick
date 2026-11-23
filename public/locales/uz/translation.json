@@ -5,7 +5,8 @@
     "movies": "Filmlar",
     "saved": "Saqlanganlar",
     "search": "Qidiruv",
-    "login": "Kirish"
+    "login": "Kirish",
+    "account": "Hisob"
   },
   "header": {
     "language": "Tilni o‘zgartirish",
@@ -51,25 +52,25 @@
     }
   },
   "genres": {
-    "28": "Jangari",
     "12": "Sarguzasht",
+    "14": "Fentezi",
     "16": "Multfilm",
+    "18": "Drama",
+    "27": "Qo‘rqinchli",
+    "28": "Jangari",
     "35": "Komediya",
+    "36": "Tarixiy",
+    "37": "Vestern",
+    "53": "Triller",
     "80": "Kriminal",
     "99": "Hujjatli",
-    "18": "Drama",
-    "10751": "Oilaviy",
-    "14": "Fentezi",
-    "36": "Tarixiy",
-    "27": "Qo‘rqinchli",
-    "10402": "Musiqiy",
-    "9648": "Detektiv",
-    "10749": "Melodrama",
     "878": "Ilmiy fantastika",
-    "10770": "Telefilm",
-    "53": "Triller",
+    "9648": "Detektiv",
+    "10402": "Musiqiy",
+    "10749": "Melodrama",
+    "10751": "Oilaviy",
     "10752": "Harbiy",
-    "37": "Vestern"
+    "10770": "Telefilm"
   },
   "bookmark": {
     "save": "Saqlash",
@@ -236,7 +237,19 @@
     "retry": "Qayta urinish"
   },
   "login": {
-    "title": "Akkauntingizga kiring",
-    "desc": "Shaxsiy kino panelingizga kirish uchun Google orqali davom eting."
+    "kicker": "Faqat a’zolar uchun",
+    "title": "Kirish",
+    "desc": "Shaxsiy bo‘limni sinab ko‘rish uchun quyidagi demo hisobdan foydalaning. Ro‘yxatdan o‘tish shart emas.",
+    "username": "Foydalanuvchi nomi",
+    "password": "Parol",
+    "submit": "Kirish",
+    "error": "Foydalanuvchi nomi yoki parol noto‘g‘ri.",
+    "demo": "Demo hisob",
+    "fill": "To‘ldirish",
+    "signedInAs": "Siz kirgansiz",
+    "welcome": "Saqlangan filmlaringiz shu qurilmada qoladi.",
+    "savedCount": "Saqlangan",
+    "plan": "Tarif",
+    "signOut": "Chiqish"
   }
 }
