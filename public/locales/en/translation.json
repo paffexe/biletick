@@ -5,7 +5,8 @@
     "movies": "Movies",
     "saved": "Saved",
     "search": "Search",
-    "login": "Sign in"
+    "login": "Sign in",
+    "account": "Account"
   },
   "header": {
     "language": "Change language",
@@ -51,25 +52,25 @@
     }
   },
   "genres": {
-    "28": "Action",
     "12": "Adventure",
+    "14": "Fantasy",
     "16": "Animation",
+    "18": "Drama",
+    "27": "Horror",
+    "28": "Action",
     "35": "Comedy",
+    "36": "History",
+    "37": "Western",
+    "53": "Thriller",
     "80": "Crime",
     "99": "Documentary",
-    "18": "Drama",
-    "10751": "Family",
-    "14": "Fantasy",
-    "36": "History",
-    "27": "Horror",
-    "10402": "Music",
-    "9648": "Mystery",
-    "10749": "Romance",
     "878": "Science fiction",
-    "10770": "TV movie",
-    "53": "Thriller",
+    "9648": "Mystery",
+    "10402": "Music",
+    "10749": "Romance",
+    "10751": "Family",
     "10752": "War",
-    "37": "Western"
+    "10770": "TV movie"
   },
   "bookmark": {
     "save": "Save",
@@ -200,7 +201,19 @@
     "retry": "Try again"
   },
   "login": {
-    "title": "Sign in to your account",
-    "desc": "Continue with Google to access your personal movie dashboard."
+    "kicker": "Members only",
+    "title": "Sign in",
+    "desc": "Use the demo account below to try your personal space. No sign-up needed.",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Sign in",
+    "error": "Wrong username or password.",
+    "demo": "Demo account",
+    "fill": "Fill in",
+    "signedInAs": "Signed in as",
+    "welcome": "Your saved movies stay on this device.",
+    "savedCount": "Saved movies",
+    "plan": "Plan",
+    "signOut": "Sign out"
   }
 }

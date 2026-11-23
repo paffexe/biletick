@@ -1,69 +1,71 @@
-# React + TypeScript + Vite
+# Biletick
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A movie browser built on [TMDB](https://www.themoviedb.org/) data. Browse what's showing, filter by genre and year, search, read reviews, check cast and crew, and save movies for later.
 
-Currently, two official plugins are available:
+**Live:** https://front-movie-site.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Home page with trending, popular, top-rated and upcoming rows
+- Movie catalogue with genre, year and sort filters
+- Movie pages with overview, gallery, reviews, cast and crew
+- Person pages with biography and filmography
+- Search with debounced results
+- Saved movies, kept in the browser
+- Dark and light themes
+- Three languages: O‘zbekcha, Русский, English
+- Demo sign-in (see below)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Demo account
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+There is no real sign-up. Sign in with the built-in demo account:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+| Username | Password     |
+| -------- | ------------ |
+| `demo`   | `cinema2026` |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+The sign-in page also has a **Fill in** button. The session is kept in `localStorage`, so it only lives in your browser.
+
+## Stack
+
+- React 19, TypeScript, Vite
+- Tailwind CSS 4 and Ant Design
+- TanStack Query for server data
+- Redux Toolkit for saved movies, theme and auth
+- React Router 7
+- i18next
+
+## Getting started
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open http://localhost:5173.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Script            | What it does                   |
+| ----------------- | ------------------------------ |
+| `npm run dev`     | Start the dev server           |
+| `npm run build`   | Type-check and build to `dist` |
+| `npm run preview` | Serve the production build     |
+| `npm run lint`    | Run ESLint                     |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Project structure
+
+The code follows [Feature-Sliced Design](https://feature-sliced.design/). Each layer may only import from the layers below it.
+
 ```
+src/
+  app/        providers, router, store, styles, i18n
+  pages/      one folder per route
+  widgets/    page sections (header, movie rail, gallery...)
+  features/   user actions (auth, bookmark, filters, search, theme...)
+  entities/   movie, person, review: API calls, types, cards
+  shared/     UI kit, helpers, config
+public/locales/  translation files
+```
+
+## Credits
+
+Movie data and images are from TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.
