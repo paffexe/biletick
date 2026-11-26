@@ -29,7 +29,8 @@ export const MovieOverview = memo(({ movie }: { movie: MovieDetails }) => {
   const code = movie.original_language;
   const intlName = code ? new Intl.DisplayNames([lang, "en"], { type: "language" }).of(code) : "";
   const languageName = code
-    ? t(`languages.${code}`, { defaultValue: intlName === code ? code.toUpperCase() : intlName })
+    ? (i18n.getResource(lang, "translation", `languages.${code}`) as string | undefined) ??
+      (intlName === code ? code.toUpperCase() : intlName)
     : "";
 
   const facts = [
